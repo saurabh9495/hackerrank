@@ -1,3 +1,5 @@
+// Sock Merchant
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -6,7 +8,7 @@ vector<string> split_string(string);
 
 //after_sorting
 // 10 10 10 10 20 20 20 30 50
-// 1 1 1 1 2 3 3 3 3 3 
+// 1 1 1 1 2 3 3 3 3 3
 
 // Complete the sockMerchant function below.
 int sockMerchant(int n, vector<int> ar)
