@@ -17,11 +17,47 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY b
  */
 
+// 2 3 5
+// 1 3 4
+
 string arrangeStudents(vector<int> a, vector<int> b)
 {
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end());
-    for (auto a = a.begin(), auto b = b.begin(); a != a.end(), )
+    bool flag = false;
+    bool arrange_students = true;
+    sort(a.begin(), a.end()); // boys
+    sort(b.begin(), b.end()); // girls
+    auto ai = a.begin(); 
+    auto bi = b.begin();
+    if(*ai < *bi){
+        flag = true;
+    }
+    for(;ai!=a.end(),bi!=b.end();ai++,bi++){
+        
+        if(flag and *ai < *bi){
+            continue;
+        }
+        else{
+            if(flag){
+                arrange_students = false;
+                break;
+            }
+        }    
+        if(!flag and *bi < *ai){
+            continue;
+        }
+        else{
+            if(!flag){
+                arrange_students = false;
+                break;
+            }
+        }     
+    }
+    if(arrange_students){
+        return "YES";
+    }
+    else{
+        return "NO";
+    }
 }
 
 int main()
