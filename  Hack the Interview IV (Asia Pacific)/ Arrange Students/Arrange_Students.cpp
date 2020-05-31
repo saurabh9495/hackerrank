@@ -17,45 +17,60 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY b
  */
 
-// 2 3 5
-// 1 3 4
+// 1 2 2 7
+// 2 4 6 8
 
 string arrangeStudents(vector<int> a, vector<int> b)
 {
-    bool flag = false;
-    bool arrange_students = true;
+    vector<int> v;
+    bool flag;
     sort(a.begin(), a.end()); // boys
     sort(b.begin(), b.end()); // girls
-    auto ai = a.begin(); 
+
+    auto aj = a.begin();
+    auto bj = b.begin();
+    for (; aj != a.end(), bj != b.end(); aj++, bj++)
+    {
+        if (*aj == *bj)
+        {
+            continue;
+        }
+        if (*aj < *bj)
+        {
+            flag = true;
+            break;
+        }
+        if (*bj < *aj)
+        {
+            flag = false;
+            break;
+        }
+    }
+
+    auto ai = a.begin();
     auto bi = b.begin();
-    if(*ai < *bi){
-        flag = true;
-    }
-    for(;ai!=a.end(),bi!=b.end();ai++,bi++){
-        
-        if(flag and *ai < *bi){
-            continue;
+    for (; ai != a.end(), bi != b.end(); ai++, bi++)
+    {
+        if (flag)
+        {
+            v.push_back(*ai);
+            v.push_back(*bi);
+            cout << *ai << " " << *bi << " ";
         }
-        else{
-            if(flag){
-                arrange_students = false;
-                break;
-            }
-        }    
-        if(!flag and *bi < *ai){
-            continue;
+        else
+        {
+            v.push_back(*bi);
+            v.push_back(*ai);
+            cout << *bi << " " << *ai << " ";
         }
-        else{
-            if(!flag){
-                arrange_students = false;
-                break;
-            }
-        }     
     }
-    if(arrange_students){
+
+    if (is_sorted(v.begin(), v.end()))
+    {
         return "YES";
     }
-    else{
+    else
+    {
         return "NO";
     }
 }
